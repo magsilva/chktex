@@ -8,7 +8,7 @@
 <head>
  <link REL="parent" TITLE="Project Page" HREF="http://nongnu.org/projects/websec/">
  <link REL="author" HREF="http://baruch.ev-en.org/">
- <link REL="shortcut icon" HREF="/favicon.ico" TYPE="image/x-icon">
+ <link REL="shortcut icon" HREF="favicon.ico" TYPE="image/x-icon">
 
  <link rel="stylesheet" href="sitewide.css" />
 
