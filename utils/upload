@@ -1,4 +1,25 @@
 #!/bin/sh
 
-rsync -alvzC --delete -e ssh files/ baruch@freesoftware.fsf.org:/upload/chktex/
+PROJ=chktex
 
+### Do local changes first ###
+
+#TODO: Check if everything is committed in $PROJ and site
+
+# Create a dump of the repository for online backup
+# bzip2 create very small files
+# Best after that is gzip --rsyncable not for size as much as for smaller rsync uploads
+svnadmin dump /home/svn/$PROJ | bzip2 -9 > files/svn/$PROJ.svn-dump.bz2
+
+# Make new site
+#make -C site
+
+### Update remote sites later ###
+
+# Upload all files
+rsync -alvC --delete -e ssh files/ baruch@freesoftware.fsf.org:/upload/websec/
+
+# Upload new site
+#pushd realsite
+#cvs ci -m 'Update website'
+#popd

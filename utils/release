@@ -34,9 +34,12 @@ then
 fi
 
 # Prepare version for release
-pushd $BASEDIR
-./autogen.sh
-popd
+if [ -f $BASEDIR/autogen.sh ]
+then
+	pushd $BASEDIR
+	./autogen.sh
+	popd
+fi
 
 # Create tar.gz file
 tar cvzf $FILE $BASEDIR
@@ -44,9 +47,11 @@ mkdir $DIR
 mv $FILE $DIR
 rm -rf $BASEDIR
 
-svnadmin dump /home/svn/$PROJ | gzip -9 > files/svn/$PROJ.svn-dump.gz
-
+# Sign the tar.gz
 echo "Now we GPG sign the release:"
 pushd $DIR
 gpg --detach --armor --sign $FILE
 popd
+
+# Generate ChangeLog
+svn log $TAGFILE | utils/gnuify-changelog.pl > $DIR/ChangeLog
