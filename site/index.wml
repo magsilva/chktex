@@ -42,15 +42,10 @@
  </p>
  
  <p>
-  Right now I've placed the last known original version (1.5) and my modified
-  version (1.6.1).
- </p>
- <p>
-  There is also the CVS area where you can see the actual source development.
-  Since the trees of the original author and mine are so different, I haven't
-  placed his in CVS, it is available as a tarball. In the CVS there is the 1.05
-  original code from the unix directory of the original upstream and then the
-  fixes that I added.
+  Actual development happens in a Subversion repository which can be viewed at:
+  <a href="http://svn.ev-en.org/?project=chktex">http://svn.ev-en.org/?project=chktex</a>.
+  It can be downloaded with the command:
+  <tt>svn co svn://svn.ev-en.org/chktex/trunk/chktex</tt>
  </p> 
  
  <ul>
