@@ -5,6 +5,7 @@ VERSION=$1
 DIR=files/$PROJ.pkg/$VERSION/
 TAG=version-$VERSION
 TAGFILE=file:///home/svn/$PROJ/tags/$PROJ/$TAG
+DOLINK=0
 
 if [ -z "$VERSION" ]
 then
@@ -15,6 +16,7 @@ fi
 if [ "$VERSION" = "snapshot" ]
 then
 	echo "Doing snapshot"
+	DOLINK=1
 	VERSION=snapshot-`date +%Y.%m.%d`
 	TAGFILE=file:///home/svn/$PROJ/trunk/$PROJ
 	DIR=files/$PROJ.pkg/snapshot
@@ -23,6 +25,11 @@ fi
 
 FILE=$PROJ-$VERSION.tar.gz
 BASEDIR=$PROJ-$VERSION/
+
+if [ $DOLINK ]
+then
+	ln -s $FILE $DIR/websec-snapshot.tar.gz
+fi
 
 # Export clean copy of the repository
 svn export $TAGFILE $BASEDIR
@@ -39,7 +46,15 @@ then
 	pushd $BASEDIR
 	./autogen.sh
 	popd
+elif [ -f $BASEDIR/Makefile ]
+then
+	pushd $BASEDIR
+	make
+	popd
 fi
+
+# Generate ChangeLog
+#utils/extractNEWS $BASEDIR/NEWS > $DIR/ChangeLog
 
 # Create tar.gz file
 tar cvzf $FILE $BASEDIR
@@ -53,5 +68,5 @@ pushd $DIR
 gpg --detach --armor --sign $FILE
 popd
 
-# Generate ChangeLog
-svn log $TAGFILE | utils/gnuify-changelog.pl > $DIR/ChangeLog
+# Locally update the site
+utils/update
