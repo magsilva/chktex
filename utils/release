@@ -26,3 +26,8 @@ mv $FILE $DIR
 rm -rf $BASEDIR
 
 svnadmin dump /home/svn/$PROJ | gzip -9 > files/svn/$PROJ.svn-dump.gz
+
+echo "Now we GPG sign the release:"
+pushd $DIR
+gpg --detach --armor --sign $FILE
+popd
