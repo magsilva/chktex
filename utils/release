@@ -24,6 +24,7 @@ fi
 FILE=$PROJ-$VERSION.tar.gz
 BASEDIR=$PROJ-$VERSION/
 
+# Export clean copy of the repository
 svn export $TAGFILE $BASEDIR
 if [ $? != 0 ]
 then
@@ -32,6 +33,12 @@ then
 	exit 1
 fi
 
+# Prepare version for release
+pushd $BASEDIR
+./autogen.sh
+popd
+
+# Create tar.gz file
 tar cvzf $FILE $BASEDIR
 mkdir $DIR
 mv $FILE $DIR
