@@ -2,10 +2,9 @@
 
 PROJ=chktex
 VERSION=$1
-FILE=$PROJ-$VERSION.tar.gz
 DIR=files/$PROJ.pkg/$VERSION/
-BASEDIR=$PROJ-$VERSION/
 TAG=version-$VERSION
+TAGFILE=file:///home/svn/$PROJ/tags/$PROJ/$TAG
 
 if [ -z "$VERSION" ]
 then
@@ -13,10 +12,23 @@ then
 	exit 1
 fi
 
-svn export file:///home/svn/$PROJ/tags/$PROJ/$TAG $BASEDIR
+if [ "$VERSION" = "snapshot" ]
+then
+	echo "Doing snapshot"
+	VERSION=snapshot-`date +%Y.%m.%d`
+	TAGFILE=file:///home/svn/$PROJ/trunk/$PROJ
+	DIR=files/$PROJ.pkg/snapshot
+	rm -f $DIR/*
+fi
+
+FILE=$PROJ-$VERSION.tar.gz
+BASEDIR=$PROJ-$VERSION/
+
+svn export $TAGFILE $BASEDIR
 if [ $? != 0 ]
 then
 	echo "Error while checking out the version."
+	rm -rf $BASEDIR
 	exit 1
 fi
 
