@@ -6,9 +6,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
 <head>
- <link REL="parent" TITLE="Project Page" HREF="http://nongnu.org/projects/websec/">
- <link REL="author" HREF="http://baruch.ev-en.org/">
- <link REL="shortcut icon" HREF="favicon.ico" TYPE="image/x-icon">
+ <link rel="parent" title="Project Page" href="http://nongnu.org/projects/websec/" />
+ <link rel="author" href="http://baruch.ev-en.org/" />
+ <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
  <link rel="stylesheet" href="sitewide.css" />
 
@@ -143,6 +143,7 @@
 
 <p>
 The latest versions are:
+</p>
 <ul>
 <:listversions():>
 </ul>
