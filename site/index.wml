@@ -17,8 +17,6 @@
  <meta name="Description" content="ChkTeX is a LaTeX semantic and syntactic checker" />
  <meta name="Author" content="Baruch Even" />
  
- <info style=meta>
-
  <title>ChkTeX - LaTeX semantic checker</title>
 </head>
 
@@ -399,7 +397,7 @@ The latest versions are:
 
  <hr />
  <p class="bottomtext">
-  Last modified by <get-var WML_GEN_REALNAME /> on <get-var WML_GEN_ISOTIME />
+  Last modified by <get-var WML_GEN_REALNAME /> on <get-var WML_GEN_ISODATE />
  </p>
 
 </body>

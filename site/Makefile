@@ -1,11 +1,13 @@
 SRC=index.wml
-SRC_STATIC=sitewide.css favicon.ico
+STATIC_SRC=sitewide.css favicon.ico
 OUT=$(SRC:%.wml=%.html)
 
 all: files_changed run install
 
 run:
-	wmk --optimize=4
+	#wmk --optimize=4
+	wmk -W2,-X1034 -D"WML_GEN_ISODATE~`date +%Y-%m-%d`"
+	validate index.html
 
 files_changed:
 	@ls -R ../files | cat - Makefile | md5sum > md5sum.new
@@ -24,4 +26,4 @@ clean:
 	-rm -f $(OUT)
 
 install:
-	install -m 0644 $(OUT) $(SRC_STATIC) ../realsite/
+	install -m 0644 $(OUT) $(STATIC_SRC) ../realsite/
