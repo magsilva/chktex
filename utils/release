@@ -4,7 +4,7 @@ PROJ=chktex
 VERSION=$1
 DIR=files/$PROJ.pkg/$VERSION/
 TAG=version-$VERSION
-TAGFILE=file:///home/svn/$PROJ/tags/$PROJ/$TAG
+TAGFILE=svn+ssh://svn.ev-en.org/home/svn/public/$PROJ/tags/$PROJ/$TAG
 DOLINK=0
 
 if [ -z "$VERSION" ]
@@ -28,7 +28,7 @@ BASEDIR=$PROJ-$VERSION/
 
 if [ $DOLINK ]
 then
-	ln -s $FILE $DIR/websec-snapshot.tar.gz
+	ln -s $FILE $DIR/chktex-snapshot.tar.gz
 fi
 
 # Export clean copy of the repository
@@ -64,6 +64,3 @@ echo "Now we GPG sign the release:"
 pushd $DIR
 gpg --detach --armor --sign $FILE
 popd
-
-# Locally update the site
-utils/update
