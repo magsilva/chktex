@@ -1,3 +1,4 @@
+#use wml::std::info
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <?xml-stylesheet href="sitewide.css" type="text/css"?>
@@ -5,13 +6,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" href="sitewide.css" />
+ <link REL="parent" TITLE="Project Page" HREF="http://nongnu.org/projects/websec/">
+ <link REL="author" HREF="http://baruch.ev-en.org/">
+ <!--<link REL="shortcut icon" HREF="/favicon.ico" TYPE="image/x-icon">-->
 
+ <link rel="stylesheet" href="sitewide.css" />
+
+ <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
  <meta name="Keywords" content="ChkTeX, LaTeX, semantic, syntactic, syntax, checker, check" />
  <meta name="Description" content="ChkTeX is a LaTeX semantic and syntactic checker" />
  <meta name="Author" content="Baruch Even" />
  
+ <info style=meta>
+
  <title>ChkTeX - LaTeX semantic checker</title>
 </head>
 
@@ -54,6 +61,94 @@
   <li><a href="https://savannah.nongnu.org/projects/chktex/">Savannah project</a></li>
  </ul>
  
+ <:
+	$dirbase="../files/chktex.pkg";
+	$dlbase="http://savannah.nongnu.org/download/chktex/chktex.pkg";
+	$archive=".tar.gz";
+	
+	sub basefile
+	{
+		my $dir = shift(@_);
+		my $ver = $dir;
+		my $sign = '';
+		my $readme = '';
+		my $changelog = '';
+		my $file = '';
+
+		foreach (`ls $dirbase/$dir`)
+		{
+			s/^\s+//;
+			s/\s+$//;
+
+			if (m/.asc$/)
+			{
+				$sign = $_;
+			}
+			elsif (m/README$/)
+			{
+				$readme = $_;
+			}
+			elsif (m/ChangeLog$/)
+			{
+				$changelog = $_;
+			}
+			else {
+				$file = $_;
+			}
+		}
+
+		return ($file, $sign, $readme, $changelog);
+	}
+	
+	sub dlurl
+	{
+		my $ver = shift(@_);
+		my $file = shift(@_);
+		return "$dlbase/$ver/$file";
+	}
+
+	sub extra
+	{
+		my $ver = shift(@_);
+		my $file = shift(@_);
+		my $text= shift(@_);
+
+		if (! $file eq '')
+		{
+			print ' - <a href="', dlurl($ver, $file), '">', $text, "</a>\n";
+		}
+	}
+	
+	sub listversions
+	{
+		my @vers = ();
+
+		# list all files in $dirbase
+		foreach $dir (`ls $dirbase`) 
+		{ 
+			$dir =~ s/\s//g;
+			push @vers, $dir;
+		}
+
+		foreach $ver (@vers) {
+			my ($file, $sign, $readme, $changelog) = basefile($ver);
+
+			print "<li>\n";
+			print '<a href="', dlurl($ver,$file), '">', $ver, "</a>\n";
+			extra($ver, $sign, "GPG Signature");
+			extra($ver, $readme, "README");
+			extra($ver, $changelog, "ChangeLog");
+			print "</li>\n";
+		}
+	}
+:>
+
+<p>
+The latest versions are:
+<ul>
+<:listversions():>
+</ul>
+
  <hr />
 
  <h2>About ChkTeX</h2>
@@ -304,9 +399,7 @@
 
  <hr />
  <p class="bottomtext">
-  <a href="http://baruch.ev-en.org/">Baruch Even</a> / 
-  <a href="http://baruch.ev-en.org/contact.html">Contact information</a> / 
-  Last Modified: November 14, 2002
+  Last modified by <get-var WML_GEN_REALNAME /> on <get-var WML_GEN_ISOTIME />
  </p>
 
 </body>
