@@ -63,7 +63,10 @@
 The latest versions are:
 </p>
 <ul>
-<:listversions():>
+ <li><a href="http://savannah.nongnu.org/download/chktex/chktex-1.6.1.tar.gz">1.6.1</a>
+     -
+	 <a href="http://savannah.nongnu.org/download/chktex/chktex-1.6.1.tar.gz.sig">GPG Signature</a>
+ </li>
 </ul>
 
  <hr />
