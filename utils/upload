@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rsync -alvzC --delete -e ssh files/ baruch@freesoftware.fsf.org:/upload/chktex/
+

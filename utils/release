@@ -1,0 +1,28 @@
+#!/bin/sh
+
+PROJ=chktex
+VERSION=$1
+FILE=$PROJ-$VERSION.tar.gz
+DIR=files/$PROJ.pkg/$VERSION/
+BASEDIR=$PROJ-$VERSION/
+TAG=version-$VERSION
+
+if [ -z "$VERSION" ]
+then
+	echo "No version given."
+	exit 1
+fi
+
+svn export file:///home/svn/$PROJ/tags/$PROJ/$TAG $BASEDIR
+if [ $? != 0 ]
+then
+	echo "Error while checking out the version."
+	exit 1
+fi
+
+tar cvzf $FILE $BASEDIR
+mkdir $DIR
+mv $FILE $DIR
+rm -rf $BASEDIR
+
+svnadmin dump /home/svn/$PROJ | gzip -9 > files/svn/$PROJ.svn-dump.gz
