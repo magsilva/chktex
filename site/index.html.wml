@@ -20,15 +20,13 @@
  </p>
  
  <p>
-  Actual development happens in a Subversion repository which can be viewed at:
-  <a href="http://svn.ev-en.org/?project=chktex">http://svn.ev-en.org/?project=chktex</a>.
-  It can be downloaded with the command:
+  Actual development happens in a Subversion repository.
+  Anonymous checkout can be done with the command:
   <tt>svn co svn://svn.ev-en.org/chktex/trunk/chktex</tt>
  </p> 
  
  <ul>
-  <li><a href="http://savannah.nongnu.org/files/?group=chktex">Download</a></li>
-  <li><a href="http://savannah.nongnu.org/cvs/?group=chktex">CVS</a></li>
+  <li><a href="http://svn.ev-en.org/?project=chktex">Subversion repository</a></li>
   <li><a href="https://savannah.nongnu.org/projects/chktex/">Savannah project</a></li>
  </ul>
  
