@@ -1,5 +1,5 @@
 #use wml::templates::be-tmpl
-<subject "ChkTeX - LaTeX semantic checker">
+<subject "ChkTeX - LaTeX semantic checker"/>
 
 <topic "ChkTeX">
  <p>
