@@ -34,9 +34,9 @@
 The latest version is:
 </p>
 <ul>
- <li><a href="chktex-1.6.2.tar.gz">1.6.2</a>
+ <li><a href="chktex-1.6.3.tar.gz">1.6.3</a>
      -
-	 <a href="chktex-1.6.2.tar.gz.sig">GPG Signature</a>
+	 <a href="chktex-1.6.3.tar.gz.sig">GPG Signature</a>
  </li>
 </ul>
 
@@ -50,7 +50,7 @@ The latest version is:
 |          @@         @@@  @@   @@ @@    @@   ##   #   @@
 |          &amp;&amp;         &amp;&amp;   &amp;&amp;   &amp;&amp;&amp;&amp;     &amp;&amp;   @@      &amp; &amp;&amp;
 |           &amp;&amp;&amp;   &amp;&amp;  &amp;&amp;   &amp;&amp;   &amp;&amp; &amp;&amp;    &amp;&amp;   @@@@   &amp;   &amp;&amp;
-|             %%%%%  %%%   %%% %%%  %%%  %%   &amp;&amp;   %%%    %%% v1.6.2
+|             %%%%%  %%%   %%% %%%  %%%  %%   &amp;&amp;   %%%    %%% v1.6.3
 |                                             &amp;&amp;   &amp;
 |                                            %%%%%%%
 </pre>
