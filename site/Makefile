@@ -1,5 +1,5 @@
 SRC=index.wml
-SRC_STATIC=sitewide.css
+SRC_STATIC=sitewide.css favicon.ico
 OUT=$(SRC:%.wml=%.html)
 
 all: files_changed run install
