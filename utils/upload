@@ -23,7 +23,7 @@ fi
 ### Update remote sites later ###
 
 # Upload all files
-rsync -alvC --delete -e ssh files/ baruch@freesoftware.fsf.org:/upload/websec/
+rsync -alvC --delete -e ssh files/ baruch@freesoftware.fsf.org:/upload/$PROJ/
 
 # Upload new site
 #pushd realsite
