@@ -1,4 +1,4 @@
-#use wml::std::info
+#use wml::tmpl::defs
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <?xml-stylesheet href="sitewide.css" type="text/css"?>
@@ -59,88 +59,6 @@
   <li><a href="https://savannah.nongnu.org/projects/chktex/">Savannah project</a></li>
  </ul>
  
- <:
-	$dirbase="../files/chktex.pkg";
-	$dlbase="http://savannah.nongnu.org/download/chktex/chktex.pkg";
-	$archive=".tar.gz";
-	
-	sub basefile
-	{
-		my $dir = shift(@_);
-		my $ver = $dir;
-		my $sign = '';
-		my $readme = '';
-		my $changelog = '';
-		my $file = '';
-
-		foreach (`ls $dirbase/$dir`)
-		{
-			s/^\s+//;
-			s/\s+$//;
-
-			if (m/.asc$/)
-			{
-				$sign = $_;
-			}
-			elsif (m/README$/)
-			{
-				$readme = $_;
-			}
-			elsif (m/ChangeLog$/)
-			{
-				$changelog = $_;
-			}
-			else {
-				$file = $_;
-			}
-		}
-
-		return ($file, $sign, $readme, $changelog);
-	}
-	
-	sub dlurl
-	{
-		my $ver = shift(@_);
-		my $file = shift(@_);
-		return "$dlbase/$ver/$file";
-	}
-
-	sub extra
-	{
-		my $ver = shift(@_);
-		my $file = shift(@_);
-		my $text= shift(@_);
-
-		if (! $file eq '')
-		{
-			print ' - <a href="', dlurl($ver, $file), '">', $text, "</a>\n";
-		}
-	}
-	
-	sub listversions
-	{
-		my @vers = ();
-
-		# list all files in $dirbase
-		foreach $dir (`ls $dirbase`) 
-		{ 
-			$dir =~ s/\s//g;
-			push @vers, $dir;
-		}
-
-		foreach $ver (@vers) {
-			my ($file, $sign, $readme, $changelog) = basefile($ver);
-
-			print "<li>\n";
-			print '<a href="', dlurl($ver,$file), '">', $ver, "</a>\n";
-			extra($ver, $sign, "GPG Signature");
-			extra($ver, $readme, "README");
-			extra($ver, $changelog, "ChangeLog");
-			print "</li>\n";
-		}
-	}
-:>
-
 <p>
 The latest versions are:
 </p>
