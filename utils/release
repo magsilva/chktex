@@ -53,9 +53,6 @@ then
 	popd
 fi
 
-# Generate ChangeLog
-#utils/extractNEWS $BASEDIR/NEWS > $DIR/ChangeLog
-
 # Create tar.gz file
 tar cvzf $FILE $BASEDIR
 mkdir $DIR
