@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml-stylesheet href="sitewide.css" type="text/css"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="sitewide.css" />
+
+ <meta name="Keywords" content="ChkTeX, LaTeX, semantic, syntactic, syntax, checker, check" />
+ <meta name="Description" content="ChkTeX is a LaTeX semantic and syntactic checker" />
+ <meta name="Author" content="Baruch Even" />
+ 
+ <title>ChkTeX - LaTeX semantic checker</title>
+</head>
+
+<body>
+
+ <h1>ChkTeX - LaTeX semantic checker</h1>
+ 
+ <p>
+  This is an homepage for ChkTeX, for a long time now it didn't have any home and
+  it needed one in order to have a center place for development.
+ </p>
+ <p>
+  I (Baruch Even) am the Debian maintainer for the ChkTeX package, and since the
+  program author is missing, I fixed some bugs and maintained it to the best of
+  ability. However Debian is not the only distribution and others are interested
+  in this program so I setup this place to allow for a central place to get
+  updates and provide patches.
+ </p>
+ <p>
+  I am unlikely to continue development on ChkTeX, I'll mostly do bug fixes. If
+  anyone is interested in stepping up and improve ChkTeX further it will be
+  appreciated.
+ </p>
+ 
+ <p>
+  Right now I've placed the last known original version (1.5) and my modified
+  version (1.6.1).
+ </p>
+ <p>
+  There is also the CVS area where you can see the actual source development.
+  Since the trees of the original author and mine are so different, I haven't
+  placed his in CVS, it is available as a tarball. In the CVS there is the 1.05
+  original code from the unix directory of the original upstream and then the
+  fixes that I added.
+ </p> 
+ 
+ <ul>
+  <li><a href="http://savannah.nongnu.org/files/?group=chktex">Download</a></li>
+  <li><a href="http://savannah.nongnu.org/cvs/?group=chktex">CVS</a></li>
+  <li><a href="https://savannah.nongnu.org/projects/chktex/">Savannah project</a></li>
+ </ul>
+ 
+ <hr />
+
+ <h2>About ChkTeX</h2>
+
+ <p>
+  Latest version: 1.6.1<br/>
+  Finds typographic errors in LaTeX<br/>
+  Author:   &lt;jensthi@ifi.uio.no&gt; (Jens T. Berger Thielemann)<br/>
+  Porting:  &lt;bjort@ifi.uio.no&gt; (Bjørn Ove Thue) [MSDOS]<br/>
+            &lt;fritsch@hmi.de&gt; (Wolfgang Fritsch) [OS/2]<br/>
+ </p>
+
+<pre>
+             #####  ###       ###    ########     ###     ##
+           ###   ##  ##        ##       ##          ##   #
+          @@         @@ @@@    @@  @@   @@  #######  @@ @
+          @@         @@@  @@   @@ @@    @@   ##   #   @@
+          &amp;&amp;         &amp;&amp;   &amp;&amp;   &amp;&amp;&amp;&amp;     &amp;&amp;   @@      &amp; &amp;&amp;
+           &amp;&amp;&amp;   &amp;&amp;  &amp;&amp;   &amp;&amp;   &amp;&amp; &amp;&amp;    &amp;&amp;   @@@@   &amp;   &amp;&amp;
+             %%%%%  %%%   %%% %%%  %%%  %%   &amp;&amp;   %%%    %%% v1.6.1
+                                             &amp;&amp;   &amp;
+                                            %%%%%%%
+</pre>
+
+                                 <h3>Introduction</h3>
+
+  <p>
+   This program has been written in frustration because some constructs
+   in LaTeX are sometimes non-intuitive, and easy to forget. It is _not_
+   a replacement for the built-in checker in LaTeX; however it catches
+   some typographic errors LaTeX oversees. In other words, it is Lint for
+   LaTeX. Filters are also provided for checking the LaTeX parts of CWEB
+   documents.
+  </p>
+  <p>
+   It is written in ANSI C and compiles silently under GCC using ``-Wall
+   -ansi -pedantic'' and almost all warning flags. This means that you
+   can compile and use the program on your favorite machine. Full source
+   included.
+  </p>
+  <p>
+   The program also supports output formats suitable for further
+   processing by editors or other programs, making errors easy to cycle
+   through. Software is provided for beautifully interfacing against the
+   AUC-TeX Emacs mode, CygnusED, GoldEd and various Amiga message
+   browsers.
+  </p>
+  <p>
+   The program itself does not have any machine requirements; Amiga,
+   MSDOS and OS/2 binaries are available. Of course, you'll need ARexx
+   and ScMsg or VBrowse to benefit from the ARexx scripts.
+  </p>
+  
+                                   <h3>Features</h3>
+
+  <p>
+   ChkTeX begins to get quite a few bells and whistles now. However, you
+   should be aware of that in most cases, all this is transparent to the
+   user. As you will see, ChkTeX offers the ability to adapt to many
+   environments and configurations.
+  </p>
+  
+
+<h3>New features</h3>
+
+<pre>
+  Modifications and additions since v1.5:
+  
+    * Fix crash when running from within emacs
+	* Fix crash for some documents
+	* Support \verb* command
+
+  Modifications and additions since v1.4:
+
+  Program
+
+   Modifications to the executable itself:
+     * As usual, a few more warnings:
+          + No space or similar in front/after parenthesis.
+          + Demands a consistent quote style.
+          + Double spaces in input which will not be rendered as one.
+          + Punctuation malplaced regarding to math mode.
+          + Warns about TeX primitives.
+          + Space in front of footnotes.
+          + Bogus \left and \right commands.
+     * The abbreviation recognizer has (for the last time?) been
+       redesigned. We now produce far less false warnings, catch more
+       cases and do all this faster than before. Seems like a win.
+       Done much of the same with the italic correction detection part,
+       too...
+     * Some bugs have been silently fixed. Hot spots in the program have
+       been optimized; in certain cases this in fact doubles the speed!
+       Along with this goes more code elegance and utilization of macro
+       processing and the C language. Take a look at ``Resource.[ch]''.
+     * It's possible to specify separate output-formats depending on
+       whether you are sending the output to a file/pipe or to a
+       terminal.
+     * Column positions are finally correct; we now expand tabs
+       correctly.
+     * ChkTeX will now recursively search for \input'ed files, both in
+       the document and on the commandline. See the ``chktexrc'' file for
+       more info.
+     * The debug switch is now more intelligent; if you wish to hack a
+       bit on ChkTeX for yourself, it is possible to produce selective
+       debugging output. The feature can also be disabled altogether.
+     * MS-DOS and OS/2 version of the program is now more flexible and
+       well-behaved, thanks to Gerd Böhm.
+     * You may now say ``-wall'' to make all messages warnings, and turn
+       them on.
+     * Uses termcap on UNIX boxes; this should ensure that ``-v2'' (or
+       more precisely: ``%i'' and ``%I'') works regardless to what
+       terminal you are using.
+
+  Resource file
+
+   New concepts introduced in the setup file:
+     * You may now specify both case-sensitive and case-insensitive user
+       patterns in the ``chktexrc'' file. In addition; it is now possible
+       to reset/clear lists.
+     * It is possible to specify how many arguments (optional/required)
+       ``WIPEARG'' should wipe; it behaves also somewhat more intelligent
+       when the arguments stretch over multiple lines.
+     * Global files will be read _in addition_ to local ones. The
+       searching order has also been reversed in order to make this more
+       intelligent.
+
+  Other
+
+   Various other stuff I've done to the product:
+
+     * The documentation has been polished and should now be easier to
+       use in practical situations.
+     * ``check'' target in ``Makefile'', so you can check that the
+       installation succeeded. In fact, the ``Makefile'' has been
+       enhanced in several other ways too, amongst other it is now GNU
+       conforming.
+     * ``deweb'' is now documented; you may say ``man deweb'' to get a
+       few words of advice. The support script (chkweb) does now behave
+       as the remaining package (accepting stdin input and flags).
+     * I've written an Emacs hack which magically adds ChkTeX to the list
+       of AUC-TeX commands; thus making the use of the program even more
+       trivial.
+       For those of you who don't wish to mess with Emacs, I've included
+       a trivial lacheck &lt;-&gt; ChkTeX interface.
+       This means that you now can use ChkTeX just as easily as lacheck
+       when you're running AUC-TeX.
+     * Added an ARexx script which lets ChkTeX talk to VBrowse, the
+       message browser of Volker Barthelmann's freely distributable ANSI
+       C compiler. The browser itself is available on Aminet as
+       ``dev/c/vbcc.lha''.
+</pre>
+
+<h3>Feature list</h3>
+
+<pre>
+     * Supports over 40 warnings. Warnings include:
+          + Commands terminated with space. Ignores ``\tt'', etc.
+          + Space in front of references instead of ``~''.
+          + Forgetting to group parenthesis characters when
+            sub-/superscripting.
+          + Italic correction (``\/'') mistakes (double, missing,
+            unnecessary).
+          + Parenthesis and environment matching.
+          + Ellipsis detection; also checks whether to use ``\dots'',
+            ``\cdots'' or ``\ldots''.
+          + Enforcement of normal space after abbreviation. Detects most
+            abbreviations automagically.
+          + Enforcement of end-of-sentence space when the last sentence
+            ended with capital letter.
+          + Math-mode on/off detection.
+          + Quote checking, both wrong types (``"'') and wrong direction.
+          + Recommends splitting three quotes in a row.
+          + Searching for user patterns.
+          + Displays comments.
+          + Space in front of ``\label'' and similar commands.
+          + Use of ``x'' instead of ``$\times$'' between numbers.
+          + Multiple spaces in input which will be rendered as one space
+            (or multiple spaces, where that is undesirable).
+          + Warns about text which may be ignored.
+          + Mathematical operators typeset as variables.
+          + No space in front of/after parenthesis.
+          + Demands a consistent quote style.
+          + Punctuation inside inner math mode/outside display math mode.
+          + Use of TeX primitives where LaTeX equivalents are available.
+          + Space in front of footnotes.
+          + Bogus characters following commands.
+     * Fully customizable. Intelligent resource format makes it possible
+       to make ChkTeX respect your LaTeX setup. Even command-line options
+       may be specified globally in the ``chktexrc'' file.
+     * Supports ``\input'' command; both TeX and LaTeX version. Actually
+       includes the files. ``TEXINPUTS''-equivalent search path.
+     * Intelligent warning/error handling. The user may promote/mute
+       warnings to suit his preferences. You may also mute warnings in
+       the header of a file; thus killing much unwanted garbage.
+     * Scripts included for checking CWEB files written in LaTeX.
+       (Requires perl v5).
+     * Supports both LaTeX 2.09 and LaTeX2e.
+     * Flexible output handling. Has some predefined formats and lets the
+       user specify his own format. Uses a ``printf()'' similar syntax.
+       ``lacheck'' compatible mode included for interfacing with the
+       AUC-TeX Emacs mode.
+     * ARexx scripts for interfacing with ScMsg and VBrowse are included.
+       Special scripts included for CygnusED/GoldED, for binding to
+       hotkey.
+     * Amiga Workbench support. Parameters may be passed by
+       shift-clicking the LaTeX files and setting the remaining options
+       in the tooltypes.
+     * Wildcard matching (Amiga only). Matches file patterns internally,
+       thus saving a lot of work. This is, however, platform-specific
+       code -- on UNIX boxes this is done by the shell.
+     * Written in ANSI C. ``configure'' script included for easy setup
+       and installation on UNIX systems.
+</pre>
+
+  <p>
+   Still, it is important to realize that the output from ChkTeX is only
+   intended as a _guide_ to fixing faults. However, it is by no means
+   always correct. This means that correct LaTeX code may produce errors
+   in ChkTeX, and vice versa: Incorrect LaTeX code may pass silently
+   through.
+  </p>
+
+                                  <h3>Legal stuff</h3>
+<pre>
+   ChkTeX, documentation, installations scripts, CWEB filters and other
+   materials provided are copyright © 1995-96 Jens T. Berger Thielemann,
+   unless explicitly stated otherwise.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or (at
+   your option) any later version.
+   
+   This program is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+   General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to:
+   
+     The Free Software Foundation, Inc.
+     675 Mass Ave
+     Cambridge
+     MA 02139
+     USA
+</pre>
+
+ <hr />
+ <p class="bottomtext">
+  <a href="http://baruch.ev-en.org/">Baruch Even</a> / 
+  <a href="http://baruch.ev-en.org/contact.html">Contact information</a> / 
+  Last Modified: November 14, 2002
+ </p>
+
+</body>
+</html>
