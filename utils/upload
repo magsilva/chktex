@@ -12,7 +12,7 @@ PROJ=chktex
 svnadmin dump /home/svn/$PROJ | bzip2 -9 > files/svn/$PROJ.svn-dump.bz2
 
 # Make new site
-#make -C site
+make -C site
 
 if [ ! -z "$1" ];
 then
@@ -26,6 +26,6 @@ fi
 rsync -alvC --delete -e ssh files/ baruch@freesoftware.fsf.org:/upload/$PROJ/
 
 # Upload new site
-#pushd realsite
-#cvs ci -m 'Update website'
-#popd
+pushd realsite
+cvs ci -m 'Update website'
+popd
