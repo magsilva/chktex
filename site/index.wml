@@ -60,12 +60,12 @@
  </ul>
  
 <p>
-The latest versions are:
+The latest version is:
 </p>
 <ul>
- <li><a href="http://savannah.nongnu.org/download/chktex/chktex-1.6.1.tar.gz">1.6.1</a>
+ <li><a href="http://savannah.nongnu.org/download/chktex/chktex-1.6.2.tar.gz">1.6.2</a>
      -
-	 <a href="http://savannah.nongnu.org/download/chktex/chktex-1.6.1.tar.gz.sig">GPG Signature</a>
+	 <a href="http://savannah.nongnu.org/download/chktex/chktex-1.6.2.tar.gz.sig">GPG Signature</a>
  </li>
 </ul>
 
@@ -74,7 +74,7 @@ The latest versions are:
  <h2>About ChkTeX</h2>
 
  <p>
-  Latest version: 1.6.1<br/>
+  Latest version: 1.6.2<br/>
   Finds typographic errors in LaTeX<br/>
   Author:   &lt;jensthi@ifi.uio.no&gt; (Jens T. Berger Thielemann)<br/>
   Porting:  &lt;bjort@ifi.uio.no&gt; (Bjørn Ove Thue) [MSDOS]<br/>
@@ -88,7 +88,7 @@ The latest versions are:
 |          @@         @@@  @@   @@ @@    @@   ##   #   @@
 |          &amp;&amp;         &amp;&amp;   &amp;&amp;   &amp;&amp;&amp;&amp;     &amp;&amp;   @@      &amp; &amp;&amp;
 |           &amp;&amp;&amp;   &amp;&amp;  &amp;&amp;   &amp;&amp;   &amp;&amp; &amp;&amp;    &amp;&amp;   @@@@   &amp;   &amp;&amp;
-|             %%%%%  %%%   %%% %%%  %%%  %%   &amp;&amp;   %%%    %%% v1.6.1
+|             %%%%%  %%%   %%% %%%  %%%  %%   &amp;&amp;   %%%    %%% v1.6.2
 |                                             &amp;&amp;   &amp;
 |                                            %%%%%%%
 </pre>
@@ -104,22 +104,11 @@ The latest versions are:
    documents.
   </p>
   <p>
-   It is written in ANSI C and compiles silently under GCC using ``-Wall
-   -ansi -pedantic'' and almost all warning flags. This means that you
-   can compile and use the program on your favorite machine. Full source
-   included.
-  </p>
-  <p>
    The program also supports output formats suitable for further
    processing by editors or other programs, making errors easy to cycle
    through. Software is provided for beautifully interfacing against the
-   AUC-TeX Emacs mode, CygnusED, GoldEd and various Amiga message
-   browsers.
-  </p>
-  <p>
-   The program itself does not have any machine requirements; Amiga,
-   MSDOS and OS/2 binaries are available. Of course, you'll need ARexx
-   and ScMsg or VBrowse to benefit from the ARexx scripts.
+   AUC-TeX Emacs mode. It is known to interface with
+   <a href="http://www.lyx.org/">LyX</a>.
   </p>
   
                                    <h3>Features</h3>
