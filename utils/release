@@ -44,7 +44,7 @@ then
 fi
 
 # Create tar.gz file
-tar cvzf $FILE $BASEDIR
+tar cvhzf $FILE $BASEDIR
 rm -rf $BASEDIR
 
 # Sign the tar.gz
