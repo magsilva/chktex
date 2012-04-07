@@ -3,7 +3,7 @@
 PROJ=chktex
 VERSION=$1
 TAG=version-$VERSION
-TAGFILE=svn+ssh://svn.ev-en.org/home/svn/public/$PROJ/tags/$PROJ/$TAG
+TAGFILE=svn+ssh://$USER@svn.savannah.nongnu.org/$PROJ/tags/$PROJ/$TAG
 
 if [ -z "$VERSION" ]
 then
@@ -50,3 +50,6 @@ rm -rf $BASEDIR
 # Sign the tar.gz
 echo "Now we GPG sign the release:"
 gpg --detach --sign $FILE
+
+echo "And upload to savannah"
+scp $FILE $FILE.sig $USER@dl.sv.gnu.org/releases/chktex
