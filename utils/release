@@ -26,6 +26,9 @@ svn export $TAGFILE $BASEDIR
 if [ $? != 0 ]
 then
 	echo "Error while checking out the version."
+    echo "Did you forget to tag it?  Try"
+    echo "svn cp svn+ssh://$USER@svn.savannah.nongnu.org/chktex/trunk/chktex  svn+ssh://$USER@svn.savannah.nongnu.org/chktex/tags/chktex/version-$VERSION -m 'Tag version $VERSION'"
+
 	rm -rf $BASEDIR
 	exit 1
 fi
@@ -52,4 +55,11 @@ echo "Now we GPG sign the release:"
 gpg --detach --sign $FILE
 
 echo "And upload to savannah"
-scp $FILE $FILE.sig $USER@dl.sv.gnu.org/releases/chktex
+scp $FILE $FILE.sig $USER@dl.sv.gnu.org:/releases/chktex
+if [ $? != 0 ]
+then
+    echo "Uploading failed!"
+    exit 1
+fi
+
+echo "Now update the website, announce on freecode.net (aka fresh meat), and upload to CTAN"
