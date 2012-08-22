@@ -39,6 +39,10 @@ then
 	pushd $BASEDIR
 	./autogen.sh
     rm -rf autom4te.cache/
+    if [ "x$2" != "x" ]; then
+        echo Adding $2 to the tarball
+        cp "$2" .
+    fi
 	popd
 elif [ -f $BASEDIR/Makefile ]
 then
