@@ -38,6 +38,7 @@ if [ -f $BASEDIR/autogen.sh ]
 then
 	pushd $BASEDIR
 	./autogen.sh
+    rm -rf autom4te.cache/
 	popd
 elif [ -f $BASEDIR/Makefile ]
 then
