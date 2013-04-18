@@ -8,6 +8,7 @@ TAGFILE=svn+ssh://$USER@svn.savannah.nongnu.org/$PROJ/tags/$PROJ/$TAG
 if [ -z "$VERSION" ]
 then
 	echo "No version given."
+    echo "Remember to change the version in configure.in"
 	exit 1
 fi
 
