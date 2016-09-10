@@ -321,3 +321,6 @@ Post: %t*N\
 	-./chktex -w30 Test.tex
 	-./chktex -g --localrc=.testrc -d2 Test.tex
 	for file in $(CSOURCES); do gcov $(GCOVOPTS) $$file; done
+
+valgrind: chktex
+	valgrind --tool=memcheck --leak-check=full chktex -mall -r -g0 -lchktexrc -v5 Test.tex | grep ^[-=][-=]
