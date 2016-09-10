@@ -482,6 +482,7 @@ WipeArg
     \label:{} \ref:{} \eqref:{} \vref:{} \pageref:{} \index:[]{}
     \cite:[][]{} \nocite:{}
     \input:{} \verbatiminput:[]{} \listinginput:[]{}{}
+    \graphicspath:{}
     \verbatimtabinput:[]{} \include:{} \includeonly:{}
     \bibitem:[]{}
     \cline:{} \cmidrule:[](){}
