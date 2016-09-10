@@ -152,7 +152,6 @@ static uint64_t UserLineSuppressions;
 static unsigned long Line;
 
 static const char *RealBuf;
-static char *LineCpy = NULL;
 static char *BufPtr;
 
 static int ItFlag = efNone;
@@ -295,17 +294,6 @@ static char *GetLTXArg(char *SrcBuf, char *OrigDest, const int Until,
     return (Retval);
 }
 
-
-static char *MakeCpy(void)
-{
-    if (!LineCpy)
-        LineCpy = strdup(RealBuf);
-
-    if (!LineCpy)
-        PrintPrgErr(pmStrDupErr);
-
-    return (LineCpy);
-}
 
 static char *PreProcess(void)
 {
@@ -674,7 +662,7 @@ static void PerformBigCmd(char *CmdPtr)
             if (CmdBuffer[1] == 'b')
             {
                 if (!(PushErr(ArgBuffer, Line, CmdPtr - Buf,
-                              CmdLen, MakeCpy(), &EnvStack)))
+                              CmdLen, RealBuf, &EnvStack)))
                     PrintPrgErr(pmNoStackMem);
             }
             else
@@ -709,7 +697,7 @@ static void PerformBigCmd(char *CmdPtr)
         {
             TmpPtr = CmdBuffer + 6;
             if (!(PushErr(TmpPtr, Line, CmdPtr - Buf + 6,
-                          CmdLen - 6, MakeCpy(), &EnvStack)))
+                          CmdLen - 6, RealBuf, &EnvStack)))
                 PrintPrgErr(pmNoStackMem);
         }
         else
@@ -1183,7 +1171,7 @@ static void HandleBracket(char Char)
         else                    /* Opening bracket of some sort  */
         {
             if ((ei = PushChar(Char, Line, BufPtr - Buf - 1,
-                               &CharStack, MakeCpy())))
+                               &CharStack, RealBuf)))
             {
                 if (Char == '{')
                 {
@@ -1754,12 +1742,6 @@ int FindErr(const char *_RealBuf, const unsigned long _Line)
 
     }
 
-    /* Free and reset LineCpy if it was used */
-    if ( LineCpy != NULL )
-    {
-        free(LineCpy);
-        LineCpy = NULL;
-    }
     return FoundErr;
 }
 
