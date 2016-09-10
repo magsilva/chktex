@@ -1,6 +1,16 @@
 Development of ChkTeX is now in a maintainance mode.  All versions
 1.6.x are essentially bug fixes.  Version 1.7 added some new features.
 
+1.7.6 (2016-09-09), released by Ivan Andrus <darthandrus@gmail.com>
+
+  * Properly copy and free strings.  This caused incorrect file
+      reporting in some cases #49000
+  * Add "verbatim" commands and environments from tipa #46734
+  * Avoid infinite loop when a regex matches an empty string
+  * Fix crash on invalid regular expression
+  * Add warnings for $$...$$ and $...$ #47044
+  * Update the banner to reflect current bug reporting contacts
+
 1.7.5 (2015-12-07), released by Ivan Andrus <darthandrus@gmail.com>
 
   * Track whether the previous line ended in a comment #45980
