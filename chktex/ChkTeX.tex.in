@@ -1562,6 +1562,16 @@ keyword in the \rsrc\ file which controls the discussed warning.
 
 \end{errdesc*}
 
+\fmted{`\%s' expected, found  `\%s' (ConTeXt).}
+\begin{errdesc}{Solo `\%s' found (ConTeXt).}
+
+% \begin{errdesc}{`\%s' expected, found `\%s' (ConTeXt).}
+
+  Similar to warnings~9 and 10, these tracks environments, but Con\TeX{}t{} environments rather than \LaTeX.
+  They are tracked as separate messages to allow being turned on and off independently thereby allowing people to use macros that start with \verb+\start+.
+
+\end{errdesc}
+
 \section{Future plans}
 
 In a somewhat prioritized sequence, this is what I'd like to put into the
