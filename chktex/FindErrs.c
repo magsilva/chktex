@@ -697,19 +697,19 @@ static void PerformBigCmd(char *CmdPtr)
         {
             TmpPtr = CmdBuffer + 6;
             if (!(PushErr(TmpPtr, Line, CmdPtr - Buf + 6,
-                          CmdLen - 6, RealBuf, &EnvStack)))
+                          CmdLen - 6, RealBuf, &ConTeXtStack)))
                 PrintPrgErr(pmNoStackMem);
         }
         else
         {
             TmpPtr = CmdBuffer + 5;
-            if ((ei = PopErr(&EnvStack)))
+            if ((ei = PopErr(&ConTeXtStack)))
             {
                 if (strcmp(ei->Data, TmpPtr))
                     PrintError(CurStkName(&InputStack), RealBuf,
                                CmdPtr - Buf + 5,
                                (long) strlen(TmpPtr),
-                               Line, emExpectC, ei->Data, TmpPtr);
+                               Line, emExpectConTeXt, ei->Data, TmpPtr);
 
                 FreeErrInfo(ei);
             }
@@ -1791,6 +1791,13 @@ void PrintStatus(unsigned long Lines)
     {
         PrintError(ei->File, ei->LineBuf, ei->Column,
                    ei->ErrLen, ei->Line, emNoMatchC, (char *) ei->Data);
+        FreeErrInfo(ei);
+    }
+
+    while ((ei = PopErr(&ConTeXtStack)))
+    {
+        PrintError(ei->File, ei->LineBuf, ei->Column,
+                   ei->ErrLen, ei->Line, emNoMatchConTeXt, (char *) ei->Data);
         FreeErrInfo(ei);
     }
 

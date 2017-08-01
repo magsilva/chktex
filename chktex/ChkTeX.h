@@ -343,7 +343,7 @@ extern FILE *OutputFile, *InputFile;
 OPTION_DEFAULTS;
 STATE_VARS;
 #undef DEF
-extern struct Stack CharStack, InputStack, EnvStack;
+extern struct Stack CharStack, InputStack, EnvStack, ConTeXtStack;
 
 enum Quote
 {

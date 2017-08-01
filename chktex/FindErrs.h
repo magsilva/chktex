@@ -128,7 +128,11 @@
  MSG(emDisplayMath, etWarn, iuOK, ctOutMath,\
      "Use \\[ ... \\] instead of $$ ... $$.")\
  MSG(emInlineMath, etWarn, iuNotSys, ctOutMath,\
-     "Use \\( ... \\) instead of $ ... $.")
+     "Use \\( ... \\) instead of $ ... $.")\
+ MSG(emExpectConTeXt, etWarn, iuOK, ctNone,\
+     "`%s' expected, found `%s' (ConTeXt).")\
+ MSG(emNoMatchConTeXt, etWarn, iuOK, ctNone,\
+     "No match found for `%s' (ConTeXt).")
 
 #undef MSG
 #define MSG(num, type, inuse, ctxt, text) num,
