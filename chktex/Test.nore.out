@@ -19,12 +19,6 @@ So is this \foo
 Message 46 in Test.tex: Use \( ... \) instead of $ ... $.
 \smallskip This is a not. $\foo Neither$ is this.  
                           ^^^^^^^^^^^^^^
-Message 1 in Test.tex: Command terminated with space.
-\stoptext  
-         ^
-Message 9 in Test.tex: `section' expected, found `text'.
-\stoptext  
-     ^^^^
 Message 22 in Test.tex: Comment displayed.
 % Warning 2  
 ^
@@ -193,6 +187,27 @@ Message 9 in Test.tex: `quux' expected, found `baz'.
 Message 10 in Test.tex: Solo `asoi' found.
 \begin{quux} \begin{baz} \end{quux} \end{baz} \end{asoi} \begin{dobedo}  
                                               ^^^^
+Message 22 in Test.tex: Comment displayed.
+% Warning 47 -- ConTeXt environment mismatch -- split from 9  
+^
+Message 1 in Test.tex: Command terminated with space.
+\stoptext  
+         ^
+Message 47 in Test.tex: `section' expected, found `text' (ConTeXt).
+\stoptext  
+     ^^^^
+Message 1 in Test.tex: Command terminated with space.
+\starttext  
+          ^
+Message 22 in Test.tex: Comment displayed.
+% (Un)fortunately, this is not an error  
+^
+Message 1 in Test.tex: Command terminated with space.
+\startbar  
+         ^
+Message 1 in Test.tex: Command terminated with space.
+\stopbar  
+        ^
 Message 22 in Test.tex: Comment displayed.
 % Warning 11  
 ^
@@ -613,6 +628,9 @@ Message 22 in Test.tex: Comment displayed.
 Message 22 in Test.tex: Comment displayed.
 % There should be no newline at the end of this file to test bug #46539 
 ^
+Message 48 in Test.tex: No match found for `text' (ConTeXt).
+\starttext  
+      ^^^^
 Message 16 in Test.tex: Mathmode still on at end of LaTeX file.
 
 

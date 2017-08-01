@@ -13,10 +13,6 @@ are nonsense in a TeXnical manner.
 So is this \foo
 \smallskip This is a not. $\foo Neither$ is this.
 
-\startsection[title={Testing ConTeXt}]
-These should now be an error.
-\stoptext
-
 % Warning 2
 
 This is a faulty reference to \ref{foo}
@@ -69,6 +65,18 @@ The Birch-Swinnerton-Dyer conjecture is not correct (but not caught).
 \begin{quux} \begin{baz} \end{quux} \end{baz} \end{asoi} \begin{dobedo}
 
 \begin{foo} \begin{bar} \end{bar}\end{foo}
+
+% Warning 47 -- ConTeXt environment mismatch -- split from 9
+\startsection[title={Testing ConTeXt}]
+These should now be an error.
+\stoptext
+\starttext
+
+% (Un)fortunately, this is not an error
+\begin{foo}
+\startbar
+\end{foo}
+\stopbar
 
 % Warning 11
 
