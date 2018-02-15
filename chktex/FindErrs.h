@@ -197,8 +197,8 @@ extern char *OutputFormat;
 
 int CheckSilentRegex(void);
 int FindErr(const char *, const unsigned long);
-void PrintError(const char *, const char *, const long, const long,
-                const long, const enum ErrNum, ...);
+void PrintError(const enum ErrNum, const char *, const char *, const long,
+                const long, const long,  ...);
 void PrintStatus(unsigned long Lines);
 
 #endif /* FINDERRS */
