@@ -496,6 +496,8 @@ WipeArg
     \citetext:{} \citeyear:*{} \citeyearpar:{}
     # tipa which uses "
     \textipa:{}
+    # LuaTeX
+    \directlua:{} \luaescapestring:{}
 }
 
 #####################################################################
