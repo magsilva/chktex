@@ -1891,15 +1891,17 @@ PrintError(const char *File, const char *String,
                 RGTCTXT(ctInHead, InHeader);
                 RGTCTXT(ctOutHead, !InHeader);
 
+                /* Count how warnings or errors we've found, and
+                 * update the return code with the worst. */
                 switch (LaTeXMsgs[Error].Type)
                 {
                 case etWarn:
                     WarnPrint++;
-                    FoundErr = EXIT_FAILURE;
+                    FoundErr = max(FoundErr, EXIT_WARNINGS);
                     break;
                 case etErr:
                     ErrPrint++;
-                    FoundErr = EXIT_FAILURE;
+                    FoundErr = max(FoundErr, EXIT_ERRORS);
                     break;
                 case etMsg:
                     break;
