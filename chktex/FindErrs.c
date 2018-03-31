@@ -1556,7 +1556,7 @@ int FindErr(const char *_RealBuf, const unsigned long _Line)
                         HERE(TmpPtr - BufPtr + 1, emBeginQ);
 
                     /* Now check quote style */
-#define ISPUNCT(ptr) (strchr(LTX_GenPunc, *ptr) && (ptr[-1] != '\\'))
+#define ISPUNCT(ptr) ((strchr(LTX_EosPunc, *ptr) || strchr(LTX_GenPunc, *ptr)) && (ptr[-1] != '\\'))
 
                     /* We ignore all single words/abbreviations in quotes */
 
