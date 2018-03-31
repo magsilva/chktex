@@ -1695,7 +1695,7 @@ int FindErr(const char *_RealBuf, const unsigned long _Line)
                 break;
 
             case ')':
-                if (isspace((unsigned char)*PrePtr))
+                if (SeenSpace)
                     PSERRA(BufPtr - Buf - 1, 1, emNoSpaceParen,
                            "in front of");
                 if (isalpha((unsigned char)*BufPtr))

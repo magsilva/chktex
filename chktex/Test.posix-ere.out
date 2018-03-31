@@ -136,6 +136,9 @@ Message 22 in Test.tex: Comment displayed.
 Message 22 in Test.tex: Comment displayed.
 % Brackets:  
 ^
+Message 37 in Test.tex: You should avoid spaces in front of parenthesis.
+)}{[])} }}}]]])))  
+^
 Message 10 in Test.tex: Solo `)' found.
 )}{[])} }}}]]])))  
 ^
